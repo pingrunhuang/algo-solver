@@ -50,36 +50,44 @@ class Solution2:
         return self.longest_common_sub(s, s[::-1])
 
 class Solution:
+
     def longestPalindrome(self, s):
         """
         :type s: str
         :rtype: str
         """
-        if len(s)==0 or len(s)==1:
+        n = len(s)
+        if n==0 or n==1:
             return s
-        
+        print("checking: ", s)
         start_ptr = 0
         end_ptr = 0
-        # there exists 2*n-1 possible position for the center index
-        for central_index in range(len(s)):
-            len1 = self.expand(s, central_index, central_index)
-            len2 = self.expand(s, central_index, central_index+1)
+        # there exists n-1+n possible position for the center index
+        for i in range(n):
+            # handle case "racecar"
+            len1= self.expand(s, i, i)
+            # handle case "aabbaa"
+            len2 = self.expand(s, i, i+1)
             max_len = max(len1, len2)
 
             if max_len > end_ptr-start_ptr:
-                start_ptr = central_index - int((max_len-1)/ 2)
-                end_ptr = central_index + int(max_len / 2)
+                start_ptr = i - int((max_len-1)/2)
+                end_ptr = i + int(max_len/2)
         return s[start_ptr:end_ptr+1]
 
     def expand(self, s, left, right):
-        while left >=0 and right<len(s) and s[left]==s[right]:
+        while left>=0 and right<len(s) and s[left]==s[right]:
             left-=1
             right+=1
+        # left and right are the index of the first non-matching character
+        # the reason why need to -1 is that we need to return the length of the palindrome
+        # for example, s="racecar", when it comes to left=-1 (which is the exit condistion of the previous while loop)
+        # right=7, right-left=7-(-1)=8, but the length of the palindrome is 7
         return right - left - 1
 
     def run(self):
         t1="babad"
-        t2="cbbd"
+        t2="dcbabcde"
         t3="bb"
         t4="abac"
         t5="caba"
@@ -90,5 +98,6 @@ class Solution:
             print(self.longestPalindrome(t))
 
 if __name__ == '__main__':
-    s = Solution2()
+    s = Solution()
+    s.run()
     

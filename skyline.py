@@ -29,29 +29,17 @@ def generate_random_buildings(num_buildings):
     return result
 
 
-
 def solution(buildings):
-    prev_x1, prev_x2, prev_y = 0, buildings[0][0], 0
     result = []
-    for skyline in sorted(buildings, key=lambda x: x[0]):
-        x1, x2, y = skyline
-        # case 2
-        if x1 <= prev_x2:
-            # case d
-            if y < prev_y:
-                result.append((prev_x2, y))
-            elif y > prev_y:
-                # case a, b 
-                result.append((x1, y))
-                # special case for b to add the skyline at tail
-                if x2 < prev_x2:
-                    result.append((prev_x2, 0))
-                    result.append((x2, prev_y))
-        # case 1
+    for building in buildings:
+        if not result:
+            result.append((building[0], building[2]))
+            result.append((building[1], 0))
         else:
-            result.append((x1, y))
-        prev_x1, prev_x2, prev_y = x1, x2, y
-    result.append((prev_x2, 0))
+            if building[0] < result[-1][0]:
+                result.append((building[0], building[2]))
+            if building[1] > result[-1][0]:
+                result.append((building[1], 0))
     return result
 
 

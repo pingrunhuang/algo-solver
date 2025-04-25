@@ -1,1 +1,10 @@
 .DS_Store
+.venv
+*.pyc
+*.pyo
+*.exe
+*.whl
+*.egg-info
+*.egg
+dist
+build

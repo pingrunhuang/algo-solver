@@ -47,12 +47,12 @@ class Solution:
         
         if cur_item_index==0 or cur_capacity==0:
             return 0
-
         else:
             yes_choise = self.items[cur_item_index].value + self.Knapsack_dp(cur_item_index-1, cur_capacity-self.items[cur_item_index].weight)
             no_choise = self.Knapsack_dp(cur_item_index-1, cur_capacity)
             self.dp[cur_item_index][cur_capacity]=max(yes_choise, no_choise)
             return max(yes_choise, no_choise)
+
 
 if __name__=='__main__':
     import time
