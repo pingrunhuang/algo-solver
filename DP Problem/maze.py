@@ -1,5 +1,6 @@
 """
 A rabbit can only move one grid from left to right, or from up to down, given a n by m maze, how many ways can the rabbit move from top left to down right?
+Leetcode62
 """
 
 def solve_maze_problems(n,m):

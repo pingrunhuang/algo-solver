@@ -15,7 +15,7 @@ What if the BST is modified (insert/delete operations) often and you need to fin
 #         self.left = None
 #         self.right = None
 
-class Solution(object):
+class Leetcode230(object):
     def kthSmallest(self, root, k):
         """
         :type root: TreeNode
@@ -35,9 +35,9 @@ class Solution2(object):
     def kthSmallest(self, root, k):
         pass
 
-from tree_utils import Tree
-if __name__ == "__main__":
-    solution = Solution()
-    tree = [1]
-    t =Tree(tree).root
-    print(solution.kthSmallest(t, 1))
+# from tree_utils import Tree
+# if __name__ == "__main__":
+#     solution = Solution()
+#     tree = [1]
+#     t =Tree(tree).root
+#     print(solution.kthSmallest(t, 1))
